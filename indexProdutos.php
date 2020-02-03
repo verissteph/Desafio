@@ -42,7 +42,7 @@
         </nav>
     </header>
     <div class="container py-2">
-    <h1>Lista de Produtos</h1>
+        <h1>Lista de Produtos</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -51,6 +51,7 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Preço</th>
                     <th scope="col">Ações</th>
+                    <th scope="col">Informações do Produto</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +64,8 @@
                         <button type="button" class="btn btn-info">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </td>
+                    <td>
+                    <link href="#">Detalhes do Produto</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -73,6 +76,8 @@
                         <button type="button" class="btn btn-info">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </td>
+                    <td>
+                        <link href="#">Detalhes do Produto</td>
                 </tr>
             </tbody>
         </table>
