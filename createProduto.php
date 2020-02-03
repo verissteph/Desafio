@@ -35,7 +35,6 @@
                     </li>
                 </ul>
             </div>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -43,27 +42,8 @@
                     </li>
                 </ul>
             </div>
-
         </nav>
     </header>
-
-    <!-- <form>
-        <div class="form-group">
-            <label for="exampleInputtext1">Nome do produto</label>
-            <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="produtoHelp" placeholder="Qual o seu produto?">
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputPassword1">Senha</label>
-            <input type="textarea" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-        </div>
-
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form> -->
 </body>
 
 </html>
