@@ -41,24 +41,41 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    Id
-                </div>
-                <div class="col-sm">
-                    Nome
-                </div>
-                <div class="col-sm">
-                    Descrição
-                </div>
-                <div class="col-sm">
-                    Preço
-                </div>
-                <div class="col-sm">
-                    Ações
-                </div>
-            </div>
+    <div class="container py-2">
+    <h1>Lista de Produtos</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Produto 1</td>
+                    <td>Descrição Produto 1</td>
+                    <td>R$ 15</td>
+                    <td>
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Camiseta</td>
+                    <td>djfnrjfnrnv</td>
+                    <td>R$ 10</td>
+                    <td>
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 
