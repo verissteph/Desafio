@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-
-<?php
-
-?>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Informações do produto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Cadastro Produtos</title>
 </head>
 
 <body>
@@ -46,33 +41,24 @@
             </div>
         </nav>
     </header>
-    <div class="container ">
-        <span>
-            <h1> Adicionar Produto </h1>
-        </span>
-        <form action="produtos.json" method="POST">
+    <div class="container">
             <div class="row">
-                <div class="col">
-                    <label for="form-control">Nome</label>
-                    <input type="text" class="form-control" required>
+                <div class="col-sm">
+                    Id
                 </div>
-                <div class="col">
-                    <label for="form-control">Preço</label>
-                    <input type="text" class="form-control">
+                <div class="col-sm">
+                    Nome
+                </div>
+                <div class="col-sm">
+                    Descrição
+                </div>
+                <div class="col-sm">
+                    Preço
+                </div>
+                <div class="col-sm">
+                    Ações
                 </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Descrição</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-            </div>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" required>
-                <label class="custom-file-label" for="customFile">Selecione a foto</label>
-            </div>
-            <div class="button-add py-3">
-                <button type="button" class="btn btn-info btn-block" name="adicionar">Adicionar</button>
-            </div>
-        </form>
     </div>
 </body>
 
