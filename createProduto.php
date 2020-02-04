@@ -5,9 +5,9 @@ if(isset($_POST['adicionar'])){
     $nomeProduto=$_POST['nome'];
     $precoProduto=$_POST['preco'];
     $envio=$_POST['adicionar'];
-    echo("<pre>");
-    var_dump($_POST);
-    echo("</pre>");
+    // echo("<pre>");
+    // var_dump($_POST);
+    // echo("</pre>");
 }
 ?>
 
