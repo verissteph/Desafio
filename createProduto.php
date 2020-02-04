@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 
 <?php
-
+if(isset($_POST['adicionar'])){
+    $nomeProduto=$_POST['nome'];
+    $precoProduto=$_POST['preco'];
+    $envio=$_POST['adicionar'];
+    echo("<pre>");
+    var_dump($_POST);
+    echo("</pre>");
+}
 ?>
 
 <html lang="en">
@@ -50,15 +57,15 @@
         <span>
             <h1> Adicionar Produto </h1>
         </span>
-        <form action="produtos.json" method="POST">
+        <form method="POST">
             <div class="row">
                 <div class="col">
                     <label for="form-control">Nome</label>
-                    <input type="text" class="form-control" required>
+                    <input type="text" class="form-control" name="nome" required>
                 </div>
                 <div class="col">
                     <label for="form-control">Preço</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="preco">
                 </div>
             </div>
             <div class="form-group">
@@ -66,11 +73,11 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" required>
+                <input type="file" class="custom-file-input" id="customFile" name="upload" required>
                 <label class="custom-file-label" for="customFile">Selecione a foto</label>
             </div>
             <div class="button-add py-3">
-                <button type="button" class="btn btn-info btn-block" name="adicionar">Adicionar</button>
+                <button type="submit" class="btn btn-info btn-block" name="adicionar">Adicionar</button>
             </div>
         </form>
     </div>
