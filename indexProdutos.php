@@ -65,7 +65,7 @@
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </td>
                     <td>
-                    <link href="#">Detalhes do Produto</td>
+                        <link href="showproduto.php">Detalhes do Produto</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -77,7 +77,7 @@
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </td>
                     <td>
-                        <link href="#">Detalhes do Produto</td>
+                        <link href="showproduto.php">Detalhes do Produto</td>
                 </tr>
             </tbody>
         </table>
