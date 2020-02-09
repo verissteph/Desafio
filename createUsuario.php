@@ -40,33 +40,55 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container style=" style="display:flex;">
         <!-- CRIAR GROUP LIST -->
-        <h1>Criar Usuário</h1>
-        <form>
-            <div class="form-group">
+        <div class="listas w-50 p-3 m-0">
+            <ul class="list-group list-group-flush">
+                <h1>Usuários</h1>
+                <li class="list-group-item ">
+                    <div class="nome d-flex justify-content-between align-items-center">
+                        Camila
+                        <span class="btn btn-info mt-2">Editar</span>
+                    </div>
+                    <div class="nome d-flex justify-content-between align-items-center">
+                        camila@gmail.com
+                        <span class="btn btn-danger mt-2">Excluir</span>
+                    </div>
+                </li>
+                <li class="list-group-item ">
+                    <div class="nome d-flex justify-content-between align-items-center">
+                        Carla
+                        <span class="btn btn-info mt-1 p">Editar</span>
+                    </div>
+                    <div class="nome d-flex justify-content-between align-items-center">
+                        carla@gmail.com
+                        <span class="btn btn-danger mt-1">Excluir</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- ACABA O GROUP LIST -->
+        <form class="w-75 p-3 m-0">
+            <h1>Criar usuário</h1>
+            <div class=" form-group">
                 <label for="inputNome">Nome</label>
                 <input type="text" class="form-control" id="inputNome" aria-describedby="namelHelp">
             </div>
-
             <div class="form-group">
                 <label for="inputEmail">E-mail</label>
                 <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
             </div>
-
             <div class="form-group">
                 <label for="inputPassword " class="mt-0 mb-1">Senha</label>
                 <small id="passwordHelp " class="form-text text-muted">Mínimo 6 caracteres.</small>
                 <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp">
             </div>
-
             <div class="form-group">
                 <label for="inputConfirmaPassword">Confirmar Senha</label>
                 <input type="password" class="form-control" id="inputConfirmaPassword">
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
         </form>
-
     </div>
 </body>
 
