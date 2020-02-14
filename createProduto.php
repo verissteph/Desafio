@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 
 <?php
-if(isset($_POST['adicionar'])){
+if(isset($_POST['adicionar']) ){
+    var_dump($_POST);
     $nomeProduto=$_POST['nome'];
     $precoProduto=$_POST['preco'];
-    $envio=$_POST['adicionar'];
-    // echo("<pre>");
-    // var_dump($_POST);
-    // echo("</pre>");
+    $fotoProduto=$_POST['upload'];
+    if(empty($_POST['upload']) && empty($_POST['nome'])){
+        echo("Preencha as informações!");
+    } else{
+        echo("cadastro realizado com sucesso");
+    }
 }
 ?>
 
@@ -57,7 +60,7 @@ if(isset($_POST['adicionar'])){
         <span>
             <h1> Adicionar Produto </h1>
         </span>
-        <form method="POST">
+        <form action="dadosProduto.json" method="POST">
             <div class="row">
                 <div class="col">
                     <label for="form-control">Nome</label>
