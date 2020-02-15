@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 
 <?php
-// var_dump($_POST);
-if (empty(!$_POST)) {
+
+var_dump($_FILES);
+//Validando campos
+if (($_FILES)&&($_POST)){
+    $array_erro = [];
+
     $preco = $_POST['preco'];
     if (!is_numeric($preco)) {
-        echo ("O preço deve conter apenas números!");
-    } else {
-        echo ("Cadastrado com sucesso!");
+        $array_erro[] = "O preço deve conter apenas números!";
     }
+    $nome = $_POST['nome'];
+    if (empty($nome)) {
+        $array_erro[] = "Nome não pode ser vazio!";
+    }
+
+    $foto = $_FILES['upload']["tmp_name"];
+        if(!$foto) {
+            $array_erro[] = "Inclua a foto!";
+        }
 }
 ?>
+
+<?php
+//ARQUIVO JSON
+if ($_POST) {
+   // recebendo os POSTS
+    $cadastro = $_POST;
+   // le arquivo
+   $le_arq=file_get_contents('dadosProduto.json');
+    $armazena_decode = json_decode($le_arq, true); //ele vai transformar em array assoc
+    //inserir conteudo do cadastro do produto do formulario no array 
+    $armazena_decode[]=$cadastro; 
+    //transformar novamente em JSON 
+    $conteudo_cadastro=json_encode($armazena_decode);
+    //guarda o conteudo ''string'' no arquivo JSON
+    $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
+
+    
+}
+?>
+
 
 <html lang="en">
 
@@ -57,12 +88,19 @@ if (empty(!$_POST)) {
     <div class="container ">
         <span>
             <h1> Adicionar Produto </h1>
-        </span>
+            </span>
+            <?php
+                if(!empty($array_erro)){
+                    foreach($array_erro as $erro){
+                    echo"<li style='color:#ff0000'> $erro </li>";
+                    }
+                }
+                ?>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col">
                     <label for="form-control">Nome</label>
-                    <input type="text" class="form-control" name="nome" required>
+                    <input type="text" class="form-control" name="nome">
                 </div>
                 <div class="col">
                     <label for="form-control">Preço</label>
@@ -74,7 +112,7 @@ if (empty(!$_POST)) {
                 <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="10"></textarea>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" name="upload" required>
+                <input type="file" class="custom-file-input" name="upload" id="customFile">
                 <label class="custom-file-label" for="customFile">Selecione a foto</label>
             </div>
             <div class="button-add py-3">
