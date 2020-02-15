@@ -2,13 +2,13 @@
 
 <?php
 // var_dump($_POST);
-if(empty(!$_POST)){
+if (empty(!$_POST)) {
     $preco = $_POST['preco'];
-    if(!is_numeric($preco)){
-    echo("O preço deve conter apenas números!");
- } else{
-    echo("Cadastrado com sucesso!");
-}
+    if (!is_numeric($preco)) {
+        echo ("O preço deve conter apenas números!");
+    } else {
+        echo ("Cadastrado com sucesso!");
+    }
 }
 ?>
 
@@ -18,8 +18,7 @@ if(empty(!$_POST)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Cadastro Produtos</title>
 </head>
 
@@ -29,8 +28,7 @@ if(empty(!$_POST)){
             <div class="container">
                 <a class="navbar-brand" href="#">
                     < Desafio PHP /> </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -60,7 +58,7 @@ if(empty(!$_POST)){
         <span>
             <h1> Adicionar Produto </h1>
         </span>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col">
                     <label for="form-control">Nome</label>
@@ -73,7 +71,7 @@ if(empty(!$_POST)){
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descrição</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="10"></textarea>
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="upload" required>
