@@ -4,23 +4,24 @@
 
 var_dump($_FILES);
 //Validando campos
-if (($_FILES)&&($_POST)){
+//preciso pensar na lógica de que não pode enviar info se todos os campos estiverem vazios
+if (($_FILES)&&($_POST)){ 
     $array_erro = [];
 
     $preco = $_POST['preco'];
     if (empty($preco)){
-    $array_erro[]= 'ERRO - O campo preço não pode ser vazio';
+        $array_erro[]= 'ERRO - O campo preço não pode ser vazio';
     }else if (!is_numeric($preco)) {
         $array_erro[] = "ERRO - O preço deve conter apenas números!";
-        }
-    $nome = $_POST['nome'];
-    if (empty($nome)) {
-        $array_erro[] = "ERRO - O campo nome não pode ser vazio!";
     }
-
+    $nome = $_POST['nome'];
+        if (empty($nome)) {
+            $array_erro[] = "ERRO - O campo nome não pode ser vazio!";
+        }
+        
     $foto = $_FILES['upload']["tmp_name"];
         if(!$foto) {
-            $array_erro[] = "ERRO - Inclua a foto!";
+            $array_erro[] = "ERRO - Inclua uma foto!";
         }
 }
 ?>
