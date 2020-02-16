@@ -8,17 +8,19 @@ if (($_FILES)&&($_POST)){
     $array_erro = [];
 
     $preco = $_POST['preco'];
-    if (!is_numeric($preco)) {
-        $array_erro[] = "O preço deve conter apenas números!";
-    }
+    if (empty($preco)){
+    $array_erro[]= 'ERRO - O campo preço não pode ser vazio';
+    }else if (!is_numeric($preco)) {
+        $array_erro[] = "ERRO - O preço deve conter apenas números!";
+        }
     $nome = $_POST['nome'];
     if (empty($nome)) {
-        $array_erro[] = "Nome não pode ser vazio!";
+        $array_erro[] = "ERRO - O campo nome não pode ser vazio!";
     }
 
     $foto = $_FILES['upload']["tmp_name"];
         if(!$foto) {
-            $array_erro[] = "Inclua a foto!";
+            $array_erro[] = "ERRO - Inclua a foto!";
         }
 }
 ?>
@@ -92,7 +94,7 @@ if ($_POST) {
             <?php
                 if(!empty($array_erro)){
                     foreach($array_erro as $erro){
-                    echo"<li style='color:#ff0000'> $erro </li>";
+                    echo"<li style='color:#ff0000 '> $erro </li>";
                     }
                 }
                 ?>
