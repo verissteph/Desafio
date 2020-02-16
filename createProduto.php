@@ -4,31 +4,35 @@
 
 var_dump($_FILES);
 //Validando campos
-//preciso pensar na lógica de que não pode enviar info se todos os campos estiverem vazios
+
 if (($_FILES)&&($_POST)){ 
     $array_erro = [];
 
+    if(empty($_POST['preco']) && empty($_POST['nome']) && empty($_FILES['upload']['tmp_nome'])){
+        $array_erro[]= 'ERRO - Preencha os campos.';
+    }else{
     $preco = $_POST['preco'];
     if (empty($preco)){
         $array_erro[]= 'ERRO - O campo preço não pode ser vazio';
     }else if (!is_numeric($preco)) {
-        $array_erro[] = "ERRO - O preço deve conter apenas números!";
+        $array_erro[] = "ERRO - O preço deve conter apenas números.";
     }
     $nome = $_POST['nome'];
         if (empty($nome)) {
-            $array_erro[] = "ERRO - O campo nome não pode ser vazio!";
+            $array_erro[] = "ERRO - O campo nome não pode ser vazio.";
         }
         
     $foto = $_FILES['upload']["tmp_name"];
         if(!$foto) {
-            $array_erro[] = "ERRO - Inclua uma foto!";
+            $array_erro[] = "ERRO - Inclua uma foto.";
         }
+    }
 }
 ?>
 
 <?php
 //ARQUIVO JSON
-if ($_POST) {
+if(empty($array_erro)) { // lógica de que não pode enviar info se todos os campos estiverem vazios
    // recebendo os POSTS
     $cadastro = $_POST;
    // le arquivo
@@ -40,9 +44,7 @@ if ($_POST) {
     $conteudo_cadastro=json_encode($armazena_decode);
     //guarda o conteudo ''string'' no arquivo JSON
     $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
-
-    
-}
+} 
 ?>
 
 
