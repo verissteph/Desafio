@@ -13,13 +13,13 @@ if (($_FILES)&&($_POST)){
     }else{
     $preco = $_POST['preco'];
     if (empty($preco)){
-        $array_erro[]= 'ERRO - O campo preço não pode ser vazio';
+        $array_erro[]= 'ERRO - Inclua o preço.';
     }else if (!is_numeric($preco)) {
         $array_erro[] = "ERRO - O preço deve conter apenas números.";
     }
     $nome = $_POST['nome'];
         if (empty($nome)) {
-            $array_erro[] = "ERRO - O campo nome não pode ser vazio.";
+            $array_erro[] = "ERRO - Inclua o nome do produto.";
         }
         
     $foto = $_FILES['upload']["tmp_name"];
@@ -32,6 +32,7 @@ if (($_FILES)&&($_POST)){
 
 <?php
 //ARQUIVO JSON
+function armDadoProduto(){
 if(empty($array_erro)) { 
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
    // recebendo os POSTS
@@ -55,6 +56,7 @@ if(empty($array_erro)) {
     // $foto_cadastro = json_encode($armazena_decode);
     // $foto_armazenada = file_put_contents('dadosProduto.json',$foto_cadastro);
 } 
+}
 ?>
 
 
