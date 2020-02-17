@@ -35,7 +35,6 @@ if (($_FILES)&&($_POST)){
 if(empty($array_erro)) { 
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
    // recebendo os POSTS
-
     $cadastro = $_POST;
    // le arquivo
    $le_arq = file_get_contents('dadosProduto.json');
@@ -46,6 +45,15 @@ if(empty($array_erro)) {
     $conteudo_cadastro = json_encode($armazena_decode);
     //guarda o conteudo ''string'' no arquivo JSON
     $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
+
+    //TESTE PARA VER SE A IMAGEM APARECE
+    // $arquivo = $_FILES['upload']['name'];
+    // pega arq
+    // $pega_foto= file_get_contents('dadosProduto.json');
+    // $armazena_decode = json_decode($pega_foto,true);
+    // $armazena_decode[] = $arquivo;
+    // $foto_cadastro = json_encode($armazena_decode);
+    // $foto_armazenada = file_put_contents('dadosProduto.json',$foto_cadastro);
 } 
 ?>
 
