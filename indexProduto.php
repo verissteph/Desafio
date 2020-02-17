@@ -44,7 +44,7 @@
             </div>
         </nav>
     </header>
-    <div class="container py-2">
+    <div class="container py-2 mx-2">
         <h1>Lista de Produtos</h1>
         <table class="table table-bordered">
             <thead>
@@ -60,9 +60,9 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td><?php echo $nome ?></td>
-                    <td><?php echo $descricao ?></td>
-                    <td><?php $preco ?></td>
+                    <td><?php echo $_POST[$nome] ?></td>
+                    <td><?php echo $_POST[$descricao] ?></td>
+                    <td><?php echo $_POST[$preco] ?></td>
                     <td>
                         <button type="button" class="btn btn-info">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
