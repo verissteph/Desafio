@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+
+?>
 <html lang="en">
 
 <head>
@@ -57,9 +60,9 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Produto 1</td>
-                    <td>Descrição Produto 1</td>
-                    <td>R$ 15</td>
+                    <td><?php echo $nome ?></td>
+                    <td><?php echo $descricao ?></td>
+                    <td><?php $preco ?></td>
                     <td>
                         <button type="button" class="btn btn-info">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
