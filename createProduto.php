@@ -32,16 +32,18 @@ if (($_FILES)&&($_POST)){
 
 <?php
 //ARQUIVO JSON
-if(empty($array_erro)) { // lógica de que não pode enviar info se todos os campos estiverem vazios
+if(empty($array_erro)) { 
+    // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
    // recebendo os POSTS
+
     $cadastro = $_POST;
    // le arquivo
-   $le_arq=file_get_contents('dadosProduto.json');
+   $le_arq = file_get_contents('dadosProduto.json');
     $armazena_decode = json_decode($le_arq, true); //ele vai transformar em array assoc
     //inserir conteudo do cadastro do produto do formulario no array 
-    $armazena_decode[]=$cadastro; 
+    $armazena_decode[] = $cadastro; 
     //transformar novamente em JSON 
-    $conteudo_cadastro=json_encode($armazena_decode);
+    $conteudo_cadastro = json_encode($armazena_decode);
     //guarda o conteudo ''string'' no arquivo JSON
     $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
 } 
@@ -121,7 +123,7 @@ if(empty($array_erro)) { // lógica de que não pode enviar info se todos os cam
                 <label class="custom-file-label" for="customFile">Selecione a foto</label>
             </div>
             <div class="button-add py-3">
-                <button type="submit" class="btn btn-info btn-block" name="adicionar">Adicionar</button>
+                <button type="submit" class="btn btn-info btn-block" >Adicionar</button>
             </div>
         </form>
     </div>
