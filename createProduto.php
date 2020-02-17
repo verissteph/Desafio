@@ -47,7 +47,7 @@ if(empty($array_erro)) {
     $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
 
     //TESTE PARA VER SE A IMAGEM APARECE
-    // $arquivo = $_FILES['upload']['name'];
+    // $arquivo = $_FILES['uploa']['tmp_nome'];
     // pega arq
     // $pega_foto= file_get_contents('dadosProduto.json');
     // $armazena_decode = json_decode($pega_foto,true);
