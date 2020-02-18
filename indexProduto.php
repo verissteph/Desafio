@@ -44,6 +44,10 @@
             </div>
         </nav>
     </header>
+    <?php
+    $le_arq = file_get_contents('dadosProduto.json');
+    $armazena_decode = json_decode($le_arq, true);
+    ?>
     <div class="container py-2 mx-2">
         <h1>Lista de Produtos</h1>
         <table class="table table-bordered">
@@ -58,20 +62,27 @@
                 </tr>
             </thead>
             <tbody>
+                
+                <?php 
+                if($armazena_decode){
+                foreach($armazena_decode as $cad_prod):?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><?php echo $_POST[$nome] ?></td>
-                    <td><?php echo $_POST[$descricao] ?></td>
-                    <td><?php echo $_POST[$preco] ?></td>
+                    
+                    <td><?php echo $cad_prod['id']; ?></td>
+                    <td><?php echo $cad_prod['nome']; ?></td>
+                    <td><?php echo $cad_prod['descricao']; ?></td>
+                    <td><?php echo $cad_prod['preco']; ?></td>
                     <td>
                         <button type="button" class="btn btn-info">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </td>
                     <td>
                         <link href="showproduto.php">Detalhes do Produto</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
+                    </tr>
+                    <tr>
+                        <?php endforeach;
+                }?>
+                    <!-- <th scope="row">2</th>
                     <td>Camiseta</td>
                     <td>djfnrjfnrnv</td>
                     <td>R$ 10</td>
@@ -81,7 +92,7 @@
                     </td>
                     <td>
                         <link href="showproduto.php">Detalhes do Produto</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
