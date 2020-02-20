@@ -1,3 +1,7 @@
+<?php
+session_start();
+//primeiro: qnd apertar o botao de editar produto na lista deve encaminhar para esta página e trazer informação que tem guardada no Json
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,37 +14,7 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    < Desafio PHP /> </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#">Adicionar produto</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#">Usuários</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link  " href="#">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php include('header.php'); ?>
     <div class="container my-3">
         <span>
             <h1>Editar Produto</h1>
@@ -58,11 +32,11 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descrição</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="descricao"></textarea>
             </div>
-            <div class="imagem my-3"> 
+            <div class="imagem my-3">
                 <!-- Ajustar a imagem -->
-                <img src="<?php if(isset($_POST['editar'])):$foto=$_POST['upload'];endif;?>" class="img-fluid rounded max-width: 100%" alt="Imagem responsiva">
+                <img src="" class="img-fluid rounded max-width: 100%">
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="upload" required>

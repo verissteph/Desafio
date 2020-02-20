@@ -1,3 +1,54 @@
+<?php
+session_start();
+$meujson_deco = [];
+if (isset($_GET['email'])) {
+    $armazena_json = file_get_contents('dadosUsuario.json'); // peguei os dados do Json
+    $meujson_deco = json_decode($armazena_json, TRUE); // retornando um array e não um objeto
+    $posicao_user = array_search($_GET['email'], array_column($meujson_deco, 'email')); //pesquisando a posição do usuario pelo email que será o ID
+}
+if (isset($_POST['edita'])) {
+    $array_erro_usuario = [];
+    if (empty($_POST['nome']) && empty($_POST['email']) && empty($_POST['senha'])) {
+        $array_erro_usuario[] = 'ERRO - Preencha os campos.';
+    } else {
+        $nome = $_POST['nome'];
+        if (empty($nome)) {
+            $array_erro_usuario[] = 'ERRO - Inclua o nome do usuário.';
+        }
+        $email = $_POST['email'];
+        if (empty($email)) {
+            $array_erro_usuario[] = "ERRO - Inclua o email do usuário.";
+        }
+
+        $senha = $_POST['senha'];
+        if (strlen($senha) < 6) {
+            $array_erro_usuario[] = "ERRO - A senha não atende o critério.";
+        }
+        $conf_senha = $_POST['conf-senha'];
+        if ($senha != $conf_senha) {
+            $array_erro_usuario[] = "ERRO - As senhas não são iguais.";
+        }
+    }
+    //JSON
+    print_r($array_erro_usuario);
+    if ($array_erro_usuario) { //ESTA DANDO ERRO AQUI
+        echo "ola";
+        $dados_edit_user = [
+            'nome' => $_POST['nome'],
+            'email' => $_POST['email']
+        ];
+        //logica da senha
+        if (empty($_POST['senha'])) {
+            $dados_edit_user['senha'] = $meujson_deco[$posicao_user]['senha'];
+        } else {
+            $dados_edit_user['senha'] = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        }
+        $meujson_deco[$posicao_user] = $dados_edit_user;
+        $dados_user_editados = json_encode($meujson_deco, JSON_PRETTY_PRINT);
+        file_put_contents('dadosUsuario.json', $dados_user_editados);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,66 +56,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar usuário</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    < Desafio PHP /> </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#">Adicionar produto</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#">Usuários</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link  " href="#">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php require('header.php'); ?>
     <div class="container my-3">
         <span>
             <h2>Editar Usuario</h2>
         </span>
-        <form class="w-100 p-3 m-0">
+        <form class="w-100 p-3 m-0" method="POST">
             <div class=" form-group">
                 <label for="inputNome">Nome</label>
-                <input type="text" class="form-control" id="inputNome" aria-describedby="namelHelp" placeholder="Adm">
+                <input type="text" class="form-control" id="inputNome" aria-describedby="namelHelp" placeholder="Adm" value="<?php echo $meujson_deco[$posicao_user]['nome']; ?>" name="nome">
             </div>
             <div class="form-group">
                 <label for="inputEmail">E-mail</label>
-                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="adm@adm.com">
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="adm@adm.com" value="<?php echo $meujson_deco[$posicao_user]['email']; ?>" name="email">
             </div>
-            <div class="form-group">
+            <div class=" form-group">
                 <label for="inputPassword " class="mt-0 mb-1">Senha</label>
                 <small id="passwordHelp " class="form-text text-muted">Mínimo 6 caracteres.</small>
-                <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp">
+                <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" name="senha">
             </div>
             <div class="form-group">
                 <label for="inputConfirmaPassword">Confirmar Senha</label>
-                <input type="password" class="form-control" id="inputConfirmaPassword">
+                <input type="password" class="form-control" id="inputConfirmaPassword" name="conf-senha">
             </div>
-            <button type="submit" class="btn btn-warning btn-lg btn-block">Editar</button>
+            <button type=" submit" class="btn btn-warning btn-lg btn-block" name="edita">Editar</button>
         </form>
     </div>
 </body>

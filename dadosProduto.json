@@ -1,1 +1,26 @@
-[{"nome":"Pizza grande","preco":"65","descricao":"Pizza marguerita e muzzarela","id":1}]
+[
+    {
+        "nome": "ovo",
+        "preco": "10",
+        "descricao": "ovo caipira",
+        "id": 1
+    },
+    {
+        "nome": "Bicicleta",
+        "preco": "850",
+        "descricao": "Bicicleta de rodinhas",
+        "id": 2
+    },
+    {
+        "nome": "tenis",
+        "preco": "1400",
+        "descricao": "tenis nike",
+        "id": 3
+    },
+    {
+        "nome": "Bola de futebol",
+        "preco": "250",
+        "descricao": "Bola de futebol original nike",
+        "id": 4
+    }
+]
