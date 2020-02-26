@@ -23,7 +23,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item ">
                         <form action="">
-                            <button type="submit" class="btn btn-dark"name="logout">Logout</button>
+                            <button type="" class="btn btn-dark"name="logout">Logout</button>
                         </form>
                     </li>
                 </ul>
@@ -31,3 +31,9 @@
         </div>
     </nav>
 </header>
+<?php
+    if(isset($_GET['logout'])){
+        session_destroy();
+        header("Location: login.php");
+    }
+?>
