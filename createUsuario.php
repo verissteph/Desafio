@@ -44,7 +44,6 @@ if (isset($_POST['envio'])) {
 
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +71,7 @@ if (isset($_POST['envio'])) {
                         </div>
                         <div class="nome d-flex justify-content-between align-items-center">
                             <?php echo $users['email']; ?>
-                            <span class="btn btn-danger mt-2">Excluir</span>
+                            <a href="" class="btn btn-danger mt-2">Excluir</a>
                         </div>
                     </li>
                 <?php endforeach ?>
