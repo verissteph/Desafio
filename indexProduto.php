@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 session_start();
+    $le_arq = file_get_contents('dadosProduto.json');
+    $armazena_decode = json_decode($le_arq, true);
 ?>
 <html lang="en">
 
@@ -14,10 +16,6 @@ session_start();
 
 <body>
     <?php include('header.php'); ?>
-    <?php
-    $le_arq = file_get_contents('dadosProduto.json');
-    $armazena_decode = json_decode($le_arq, true);
-    ?>
     <div class="container py-2 mx-2">
         <h1>Lista de Produtos</h1>
         <table class="table table-bordered">
@@ -41,9 +39,9 @@ session_start();
                             <td><?php echo $cad_prod['descricao']; ?></td>
                             <td><?php echo $cad_prod['preco']; ?></td>
                             <td>
-                                <a href="editProduto.php">
-                                    <button type="button" class="btn btn-info" name="edit">Editar </button>
-                                </a>
+                                <a href="editProduto.php?id=<?php echo $cad_prod['id'];?>" class="btn btn-info" >Editar</a>
+                                    <!-- <button type="button" class="btn btn-info" name="edit">Editar </button> -->
+                                <!-- </a> -->
                                 <button type="button" class="btn btn-danger" name="delete"> Excluir </button>
                             </td>
 
