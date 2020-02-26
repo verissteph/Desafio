@@ -1,7 +1,8 @@
 <?php
 session_start();
+include('header.php');
 // var_dump($_FILES);
-//Validando campos
+//--------------------------------------Validando campos----------------------------------------------
 
 if (($_FILES) && ($_POST)) {
     $array_erro = [];
@@ -35,13 +36,15 @@ if (!empty($_POST) && empty($array_erro)) {
     // le arquivo
     $le_arq = file_get_contents('dadosProduto.json');
     $armazena_decode = json_decode($le_arq, true); //ele vai transformar em array assoc
-    //Condição caso o arqv json esteja vazio, ele vai atribuir ao indice ID 
+    
+    //Condição caso o arqv json esteja vazio, ele vai atribuir ao indice ID e criar ID para cada produto
     if ($armazena_decode == null) {
         $cadastro['id'] = 1;
     } else {
         $cadastro['id'] = count($armazena_decode) + 1;
     }
     //$cadastro['imagem'] = $_FILES['upload']['name'];
+
     //mostra infos do arquivo
     $info = pathinfo($_FILES['upload']['name']);
     //mostra qual extensao do arquivo 
@@ -63,6 +66,7 @@ if (!empty($_POST) && empty($array_erro)) {
         move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $nome_imagem);
     }
 }
+// ---------------------------------------------FIM JSON -------------------------------------------
 ?>
 
 <!DOCTYPE html>
