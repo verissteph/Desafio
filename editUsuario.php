@@ -30,8 +30,8 @@ if (isset($_POST['edita'])) {
         }
     }
     //JSON
-    print_r($array_erro_usuario);
-    if ($array_erro_usuario) { //ESTA DANDO ERRO AQUI
+    //print_r(($array_erro_usuario);
+    if (empty($array_erro_usuario)) { //ESTA DANDO ERRO AQUI
         echo "ola";
         $dados_edit_user = [
             'nome' => $_POST['nome'],
