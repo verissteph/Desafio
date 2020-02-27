@@ -1,26 +1,23 @@
 [
     {
         "id": 1,
-        "nome": "Bola",
-        "preco": "50",
-        "descricao": "Futebol.\r\nVerde.\r\nNike"
+        "nome": "Moto",
+        "preco": "12.000",
+        "descricao": "Moto estilo anos 90.",
+        "foto": "moto.jpg"
     },
     {
         "id": 2,
-        "nome": "carro",
-        "preco": "200.000",
-        "descricao": "Mercedez Esportiva"
+        "nome": "Bola",
+        "preco": "75",
+        "descricao": "Bola verde da Nike",
+        "foto": "bola.jpg"
     },
     {
         "id": 3,
         "nome": "Bicicleta",
-        "preco": "600",
-        "descricao": "Bicicleta infantil com rodinhas"
-    },
-    {
-        "id": 4,
-        "nome": "moto",
-        "preco": "12.000",
-        "descricao": "Moto antiga estilo italiana"
+        "preco": "650",
+        "descricao": "Bicicleta infantil com rodinhas traseiras",
+        "foto": "bikee.jpg"
     }
 ]
