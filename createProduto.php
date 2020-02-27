@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('header.php');
-// var_dump($_FILES);
+
 //--------------------------------------Validando campos----------------------------------------------
 
 if (($_FILES) && ($_POST)) {
@@ -32,38 +32,49 @@ if (($_FILES) && ($_POST)) {
 if (!empty($_POST) && empty($array_erro)) {
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
     // recebendo os POSTS
-    $cadastro = $_POST;
-    // le arquivo
-    $le_arq = file_get_contents('dadosProduto.json');
-    $armazena_decode = json_decode($le_arq, true); //ele vai transformar em array assoc
+    $cadastro_produto = [
+        "id"=>"",
+        "nome"=>$_POST['nome'],
+        "preco"=>$_POST['preco'],
+        "descricao"=>$_POST['descricao']
+    ]; //colocando o ID antes dos outros elementos do array
+    $dados_produtos = file_get_contents('dadosProduto.json');
+    $array_produtos = json_decode($dados_produtos, true); //ele vai transformar em array assoc
+    //------------------------------------------CRIANDO ID---------------------------------------------
     
     //Condição caso o arqv json esteja vazio, ele vai atribuir ao indice ID e criar ID para cada produto
-    if ($armazena_decode == null) {
-        $cadastro['id'] = 1;
+    if ($array_produtos == null) {
+        $cadastro_produto['id'] = 1; //a posição ID irá receber o valor 1
+        //array_unshift($array_produtos, $cadastro_produto['id']);
     } else {
-        $cadastro['id'] = count($armazena_decode) + 1;
+        $cadastro_produto['id'] = count($array_produtos) + 1;
+        //array_unshift($array_produtos, $cadastro_produto['id']);
     }
-    //$cadastro['imagem'] = $_FILES['upload']['name'];
+    echo ("<pre>");
+    var_dump($cadastro_produto);
+    echo ("</pre>");
+    //------------------------------------------IMAGEM----------------------------------------------------
 
     //mostra infos do arquivo
-    $info = pathinfo($_FILES['upload']['name']);
+    $info_img = pathinfo($_FILES['upload']['name']);
     //mostra qual extensao do arquivo 
-    $extension = $info['extension'];
+    $extensao_img = $info_img['extension'];
     //renomeando o arquivo 
-    $nome_imagem = $img_name = $info['filename'] . "-" . $cadastro['id'] . '.' . $extension;
+    $rename_img = $name_img = $info_img['filename'] . "-" . $cadastro_produto['id'] . '.' . $extensao_img;
+//------------------------------------------------------------------------------------------------------
 
     //inserir conteudo do cadastro do produto do formulario no array 
-    $armazena_decode[] = $cadastro;
+    $array_produtos[] = $cadastro_produto;
     //transformar novamente em JSON 
-    $conteudo_cadastro = json_encode($armazena_decode, JSON_PRETTY_PRINT);
+    $json_produtos = json_encode($array_produtos, JSON_PRETTY_PRINT);
     //guarda o conteudo ''string'' no arquivo JSON
-    $armazena_arq = file_put_contents('dadosProduto.json', $conteudo_cadastro);
+     file_put_contents('dadosProduto.json', $json_produtos);
     //Para armazenar a imagem na pasta de imagem:
     if (is_dir('img/')) {
-        move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $nome_imagem);
+        move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $rename_img);
     } else {
         mkdir('img/');
-        move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $nome_imagem);
+        move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $rename_img);
     }
 }
 // ---------------------------------------------FIM JSON -------------------------------------------
