@@ -2,16 +2,6 @@
 include('header.php');
 session_start();
 $att_produto = [];
-// if (isset($_GET['id'])) { //se tiver id na url
-//     $dados_produtos = file_get_contents('dadosProduto.json'); //pegar os dados JSON
-//     $array_produtos = json_decode($dados_produtos, true); //Transformar em um array de varios arrays
-//     foreach ($array_produtos as $posicao => $produto) { // percorrer cada array
-//         if ($_GET['id'] == $produto['id']) {
-//             var_dump($produto);
-//             exit;
-//         }
-//     }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +46,9 @@ $att_produto = [];
                 </textarea>
             </div>
             <div class="imagem my-3">
-                <!-- Ajustar a imagem e mostrar aqui. REVER ESSA PARTE-->
+
                 <?php ?>
-                <img src="<?php echo "\C:xampp\exerciciophp\desafio-php\img\.$produto[foto]";?>" class="width:300px">
+                <img src="<?php echo "img/$produto[foto]" ?>" class="imagem m-auto" style="width:80%;height: 80vh">
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="upload">
