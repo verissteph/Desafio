@@ -1,23 +1,23 @@
 [
     {
         "id": 1,
-        "nome": "Moto",
-        "preco": "12.000",
-        "descricao": "Moto estilo anos 90.",
-        "foto": "moto.jpg"
+        "nome": "carro",
+        "preco": "200.000",
+        "descricao": "Mercedez Esportiva",
+        "foto": "200227063806-"
     },
     {
         "id": 2,
-        "nome": "Bola",
-        "preco": "75",
-        "descricao": "Bola verde da Nike",
-        "foto": "bola.jpg"
+        "nome": "caderno",
+        "preco": "50",
+        "descricao": "anotacao e desenho",
+        "foto": "200227063901-"
     },
     {
         "id": 3,
-        "nome": "Bicicleta",
-        "preco": "650",
-        "descricao": "Bicicleta infantil com rodinhas traseiras",
-        "foto": "bikee.jpg"
+        "nome": "mochila",
+        "preco": "52",
+        "descricao": "Mochila de couro",
+        "foto": "200227064820-"
     }
 ]
