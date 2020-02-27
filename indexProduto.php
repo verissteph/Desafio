@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
+include('header.php');
 session_start();
-    $le_arq = file_get_contents('dadosProduto.json');
-    $armazena_decode = json_decode($le_arq, true);
+$dados_produtos = file_get_contents('dadosProduto.json');
+$array_produtos = json_decode($dados_produtos, true);
 ?>
 <html lang="en">
 
@@ -15,7 +16,6 @@ session_start();
 </head>
 
 <body>
-    <?php include('header.php'); ?>
     <div class="container py-2 mx-2">
         <h1>Lista de Produtos</h1>
         <table class="table table-bordered">
@@ -31,16 +31,16 @@ session_start();
             <tbody>
 
                 <?php
-                if ($armazena_decode) : ?>
-                    <?php foreach ($armazena_decode as $cad_prod) : ?>
+                if ($array_produtos) : ?>
+                    <?php foreach ($array_produtos as $produto) : ?>
                         <tr>
-                            <td><?php echo $cad_prod['id']; ?></td>
-                            <td><?php echo $cad_prod['nome']; ?></td>
-                            <td><?php echo $cad_prod['descricao']; ?></td>
-                            <td><?php echo $cad_prod['preco']; ?></td>
+                            <td><?php echo $produto['id']; ?></td>
+                            <td><?php echo $produto['nome']; ?></td>
+                            <td><?php echo $produto['descricao']; ?></td>
+                            <td><?php echo $produto['preco']; ?></td>
                             <td>
-                                <a href="editProduto.php?id=<?php echo $cad_prod['id'];?>" class="btn btn-info" >Editar</a>
-                                    <!-- <button type="button" class="btn btn-info" name="edit">Editar </button> -->
+                                <a href="editProduto.php?id=<?php echo $produto['id']; ?>" class="btn btn-info">Editar</a>
+                                <!-- <button type="button" class="btn btn-info" name="edit">Editar </button> -->
                                 <!-- </a> -->
                                 <button type="button" class="btn btn-danger" name="delete"> Excluir </button>
                             </td>
