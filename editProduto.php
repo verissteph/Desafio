@@ -89,9 +89,14 @@ if ($_POST) {
             "descricao" => $_POST['descricao'],
             "foto" =>$foto_edit
         ];
-        $produtos_atualizados = array_merge($array_produtos, $array_produto_atualizado);
+        //= array_merge($array_produtos, $array_produto_atualizado);
+        $produtos_atualizados=[];
+        $array_produtos = $array_produto_atualizado;
+        $produtos_atualizados = $array_produtos;
     }
-    var_dump($array_produto_atualizado);
+    echo("<pre>");
+    var_dump($produtos_atualizados);
+    echo ("</pre>");
     exit;
 }
 ?>
