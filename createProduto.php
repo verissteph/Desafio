@@ -2,6 +2,7 @@
 session_start();
 include('header.php');
 
+
 //--------------------------------------Validando campos----------------------------------------------
 
 if (($_FILES) && ($_POST)) {
@@ -32,11 +33,13 @@ if (($_FILES) && ($_POST)) {
 if (!empty($_POST) && empty($array_erro)) {
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
     // recebendo os POSTS
+    $nome_foto = $_FILES['upload']['name'];
     $cadastro_produto = [
         "id"=>"",
         "nome"=>$_POST['nome'],
         "preco"=>$_POST['preco'],
-        "descricao"=>$_POST['descricao']
+        "descricao"=>$_POST['descricao'],
+        "foto"=> $nome_foto 
     ]; //colocando o ID antes dos outros elementos do array
     $dados_produtos = file_get_contents('dadosProduto.json');
     $array_produtos = json_decode($dados_produtos, true); //ele vai transformar em array assoc
@@ -51,7 +54,7 @@ if (!empty($_POST) && empty($array_erro)) {
         //array_unshift($array_produtos, $cadastro_produto['id']);
     }
     echo ("<pre>");
-    var_dump($cadastro_produto);
+    //var_dump($cadastro_produto);
     echo ("</pre>");
     //------------------------------------------IMAGEM----------------------------------------------------
 
@@ -76,6 +79,7 @@ if (!empty($_POST) && empty($array_erro)) {
         mkdir('img/');
         move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $rename_img);
     }
+    header('location: indexProduto.php');
 }
 // ---------------------------------------------FIM JSON -------------------------------------------
 ?>
