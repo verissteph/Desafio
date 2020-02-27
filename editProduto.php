@@ -57,7 +57,8 @@ $att_produto = [];
             </div>
             <div class="imagem my-3">
                 <!-- Ajustar a imagem e mostrar aqui. REVER ESSA PARTE-->
-                <img src="/img/<?php $rename_img;?>" alt="" class="width:300px">
+                <?php ?>
+                <img src="<?php echo "\C:xampp\exerciciophp\desafio-php\img\.$produto[foto]";?>" class="width:300px">
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="upload">
