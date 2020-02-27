@@ -1,7 +1,8 @@
 <?php
 include('header.php');
 session_start();
-$att_produto = [];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ $att_produto = [];
         <span>
             <h1>Editar Produto</h1>
         </span>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div class="row">
                 <?php if (isset($_GET['id'])) : //se tiver id na url
                 ?>
@@ -48,10 +49,10 @@ $att_produto = [];
             <div class="imagem my-3">
 
                 <?php ?>
-                <img src="<?php echo "img/$produto[foto]" ?>" class="imagem m-auto" style="width:80%;height: 80vh">
+                <img src="<?php echo "img/$produto[foto]" ?>" class="imagem" style="width:80%;height: auto;margin: auto">
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" name="upload">
+                <input type="file" class="custom-file-input" id="customFile" name="uploadedit">
                 <label class="custom-file-label" for="customFile">Selecione a foto</label>
             </div>
         <?php endif ?>
@@ -63,5 +64,34 @@ $att_produto = [];
         </form>
     </div>
 </body>
-
 </html>
+<?php
+$dados_produtos = file_get_contents('dadosProduto.json');
+$array_produtos = json_decode($dados_produtos, true);
+$foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
+if ($_POST) {
+    $array_erros = []; //depois testar ele acima desse IF;
+    $array_produto_atualizado = [];
+    if (empty($_POST['nome'])) {
+        $array_erros[] = 'ERRO - Preencha o nome do produto';
+    }
+    if (!is_numeric($_POST['preco'])) {
+        $array_erros[] = 'ERRO - O preço deve conter apenas números';
+    }
+    // if (empty($_FILES['upload_edit']['tmp_name'])) {
+    //     $array_erros[] = 'ERRO - Atualize a imagem do produto editado';
+    // }
+    if (empty($array_erros)) {
+        $array_produto_atualizado = [
+            "id" => $_GET['id'],
+            "nome" => $_POST['nome'],
+            "preco" => $_POST['preco'],
+            "descricao" => $_POST['descricao'],
+            "foto" =>$foto_edit
+        ];
+        $produtos_atualizados = array_merge($array_produtos, $array_produto_atualizado);
+    }
+    var_dump($array_produto_atualizado);
+    exit;
+}
+?>
