@@ -33,13 +33,12 @@ if (($_FILES) && ($_POST)) {
 if (!empty($_POST) && empty($array_erro)) {
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
     // recebendo os POSTS
-    $nome_foto = $_FILES['upload']['name'];
     $cadastro_produto = [
         "id"=>"",
         "nome"=>$_POST['nome'],
         "preco"=>$_POST['preco'],
         "descricao"=>$_POST['descricao'],
-        "foto"=> $nome_foto 
+        "foto"=> date("ymdHis") . '-' . $FILES['upload']['name'] 
     ]; //colocando o ID antes dos outros elementos do array
     $dados_produtos = file_get_contents('dadosProduto.json');
     $array_produtos = json_decode($dados_produtos, true); //ele vai transformar em array assoc
@@ -53,9 +52,6 @@ if (!empty($_POST) && empty($array_erro)) {
         $cadastro_produto['id'] = count($array_produtos) + 1;
         //array_unshift($array_produtos, $cadastro_produto['id']);
     }
-    echo ("<pre>");
-    //var_dump($cadastro_produto);
-    echo ("</pre>");
     //------------------------------------------IMAGEM----------------------------------------------------
 
     //mostra infos do arquivo
@@ -63,7 +59,8 @@ if (!empty($_POST) && empty($array_erro)) {
     //mostra qual extensao do arquivo 
     $extensao_img = $info_img['extension'];
     //renomeando o arquivo 
-    $rename_img = $name_img = $info_img['filename'] . "-" . $cadastro_produto['id'] . '.' . $extensao_img;
+   // $rename_img = $name_img = $info_img['filename'] . "-" . $cadastro_produto['id'] . '.' . $extensao_img;
+   $rename_img=date("ymdHis").'-'.$FILES['upload']['name'];
 //------------------------------------------------------------------------------------------------------
 
     //inserir conteudo do cadastro do produto do formulario no array 
