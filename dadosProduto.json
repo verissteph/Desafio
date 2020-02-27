@@ -19,5 +19,12 @@
         "preco": "52",
         "descricao": "Mochila de couro",
         "foto": "200227064820-"
+    },
+    {
+        "id": 4,
+        "nome": "Violao",
+        "preco": "300",
+        "descricao": "Viol\u00e3o 6 cordas.",
+        "foto": "200227145843-"
     }
 ]
