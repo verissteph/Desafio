@@ -6,6 +6,7 @@ if (isset($_GET['email'])) {
     $meujson_deco = json_decode($armazena_json, TRUE); // retornando um array e não um objeto
     $posicao_user = array_search($_GET['email'], array_column($meujson_deco, 'email')); //pesquisando a posição do usuario pelo email que será o ID
 }
+//---------------------------------VALIDAÇÃO--------------------------------------
 if (isset($_POST['edita'])) {
     $array_erro_usuario = [];
     if (empty($_POST['nome']) && empty($_POST['email']) && empty($_POST['senha'])) {
