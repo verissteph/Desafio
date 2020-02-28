@@ -1,23 +1,16 @@
 [
     {
-        "id": 1,
-        "nome": "caderno",
-        "preco": "22",
-        "descricao": "caderno de bolinha",
-        "foto": "200228032514-caderno2.jpg"
-    },
-    {
-        "id": 2,
-        "nome": "mochila",
+        "id": "2",
+        "nome": "Mochila Couro",
         "preco": "200",
-        "descricao": "mochila viagem",
-        "foto": "200228032533-mochila.jpg"
+        "descricao": "                Mochila para viajantes.                                     ",
+        "foto": "200228050150-"
     },
     {
-        "id": 3,
-        "nome": "caderno sem pauta",
-        "preco": "40",
-        "descricao": "caderno ideal para desenhos",
-        "foto": "200228032609-caderno.jpg"
+        "id": "3",
+        "nome": "Caderno",
+        "preco": "30",
+        "descricao": "                                caderno ideal para desenhos                                ",
+        "foto": "200228045156-"
     }
 ]
