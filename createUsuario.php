@@ -33,12 +33,22 @@ if (isset($_POST['envio'])) {
     if (empty($array_erro_usuario)) {
 
         $dado_usuario = [
+            'id'=> "",
             'nome' => $_POST['nome'],
             'email' => $_POST['email'],
             'senha' => password_hash($senha, PASSWORD_DEFAULT)
         ];
 
+        if($meujson_deco == null){
+            $dado_usuario['id']=1;
+        } else{
+            $dado_usuario['id']=count($meujson_deco)+1;
+        }
         $meujson_deco[] = $dado_usuario; // pegou os dados para colocar na ultima posição
+        echo("<pre>");
+        print_r($meujson_deco);
+        echo("</pre>");
+        exit;
         $novo_json = json_encode($meujson_deco, JSON_PRETTY_PRINT); // transformei novamente em json
         file_put_contents('dadosUsuario.json', $novo_json); // incluindo novamente no json
 
@@ -56,7 +66,7 @@ if (isset($_POST['envio'])) {
 </head>
 
 <body>
-<?php include('header.php');?>
+    <?php include('header.php'); ?>
     <div class="container style=" style="display:flex;">
         <!-- CRIAR GROUP LIST -->
         <div class="listas w-50 p-3 m-0">
@@ -65,13 +75,17 @@ if (isset($_POST['envio'])) {
                 <?php
                 foreach ($meujson_deco as $users) : ?>
                     <li class="list-group-item ">
+
+                        <div class="nome d-flex justify-content-between align-items-center">
+                            <input type="hidden" name="id_user"value="<?php echo $users['id']; ?>">
+                        </div>
                         <div class="nome d-flex justify-content-between align-items-center">
                             <?php echo $users['nome']; ?>
                             <a href="editUsuario.php?email=<?php echo $users['email']; ?>" class="btn btn-info mt-2">Editar</a>
                         </div>
                         <div class="nome d-flex justify-content-between align-items-center">
                             <?php echo $users['email']; ?>
-                            <a href="" class="btn btn-danger mt-2">Excluir</a>
+                            <a href="deletarUsuario.php?id=<?php echo $users['id']; ?>" class="btn btn-danger">Excluir</a>
                         </div>
                     </li>
                 <?php endforeach ?>
