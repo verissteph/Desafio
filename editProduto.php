@@ -80,7 +80,7 @@ foreach ($array_produtos as $produto_do_array) {
     }
 }
 if ($_POST) {
-    $array_erros = []; //depois testar ele acima desse IF;
+    $array_erros = []; 
     $array_produto_atualizado = [];
     if (empty($_POST['nome'])) {
         $array_erros[] = 'ERRO - Preencha o nome do produto';
@@ -88,16 +88,13 @@ if ($_POST) {
     if (!is_numeric($_POST['preco'])) {
         $array_erros[] = 'ERRO - O preço deve conter apenas números';
     }
-    // if (empty($_FILES['upload_edit']['tmp_name'])) {
-    //     $array_erros[] = 'ERRO - Atualize a imagem do produto editado';
-    // }
-        if(isset($_FILES['uploadedit']['name'])){
+     if(isset($_FILES['uploadedit']['tmp_name'])){ //tef ajudou
             $foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
             $foto_nome = $_FILES['uploadedit']['tmp_name'];
             $foto_camin= "img/".$foto_edit;
             move_uploaded_file($foto_nome,$foto_camin);
 
-            } elseif(empty($_FILES['uploadedit']['name'])){
+            } elseif(empty($_FILES['uploadedit']['tmp_name'])){
                 $foto_edit = $produto['foto'];
             }
     if (empty($array_erros)) {
@@ -115,10 +112,13 @@ if ($_POST) {
                 $array_produtos[$indice]=$atualiza;
             }
         }
-        echo ("<pre>");
-        var_dump($array_produtos);
-        echo ("</pre>");
-        exit;
+        $array_json=json_encode($array_produtos,JSON_PRETTY_PRINT);
+        $novo_json_edit=file_put_contents('dadosProduto.json',$array_json);
+        header("location: indexProduto.php");
+        // echo ("<pre>");
+        // var_dump($array_produtos);
+        // echo ("</pre>");
+        
     }
     
 }
