@@ -1,8 +1,56 @@
-<?php
+<?php session_start();
 include('header.php');
-session_start();
 
+$dados_produtos = file_get_contents('dadosProduto.json');
+$array_produtos = json_decode($dados_produtos, true);
+$foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];//poderia tentar iniciar com id e caso o id fosse igual iria substituir uma imagem pela outra. No caso de editar e colocar uma foto nv, senao iria permanecer a que ja existe;
 
+foreach ($array_produtos as $produto_do_array) {
+    if ($produto_do_array['id'] == $_GET['id']) {
+        $produto = $produto_do_array;
+    }
+}
+if ($_POST) {
+    $array_erros = [];
+    $array_produto_atualizado = [];
+    if (empty($_POST['nome'])) {
+        $array_erros[] = 'ERRO - Preencha o nome do produto';
+    }
+    if (!is_numeric($_POST['preco'])) {
+        $array_erros[] = 'ERRO - O preço deve conter apenas números';
+    }
+    if (isset($_FILES['uploadedit']['tmp_name'])) { //tef ajudou
+        $foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
+        $foto_nome = $_FILES['uploadedit']['tmp_name'];
+        $foto_camin = "img/" . $foto_edit;
+        move_uploaded_file($foto_nome, $foto_camin);
+    } elseif (empty($_FILES['uploadedit']['tmp_name'])) {
+        $foto_edit = $produto['foto'];
+    }
+    if (empty($array_erros)) {
+        $array_produto_atualizado = [
+            "id" => $_GET['id'],
+            "nome" => $_POST['nome'],
+            "preco" => $_POST['preco'],
+            "descricao" => $_POST['descricao'],
+            "foto" => $foto_edit
+        ];
+        $atualiza = array_merge($produto, $array_produto_atualizado);
+        $array_produtos = json_decode($dados_produtos, true);
+        foreach ($array_produtos as $indice => $produto) {
+            if ($produto['id'] == $_GET['id']) {
+                $array_produtos[$indice] = $atualiza;
+            }
+        }
+        $array_json = json_encode($array_produtos, JSON_PRETTY_PRINT);
+        $novo_json_edit = file_put_contents('dadosProduto.json', $array_json);
+        header("location: indexProduto.php");
+        // echo ("<pre>");
+        // var_dump($array_produtos);
+        // echo ("</pre>");
+
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +106,7 @@ session_start();
         <?php endif ?>
     <?php endforeach ?>
 <?php endif ?>
+
 <div class="button-add py-3">
     <button type="submit" class="btn btn-warning btn-block" name="editar">Editar</button>
 </div>
@@ -69,57 +118,3 @@ session_start();
 </body>
 
 </html>
-<?php
-$dados_produtos = file_get_contents('dadosProduto.json');
-$array_produtos = json_decode($dados_produtos, true);
-$foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
-
-foreach ($array_produtos as $produto_do_array) {
-    if ($produto_do_array['id'] == $_GET['id']) {
-        $produto = $produto_do_array;
-    }
-}
-if ($_POST) {
-    $array_erros = []; 
-    $array_produto_atualizado = [];
-    if (empty($_POST['nome'])) {
-        $array_erros[] = 'ERRO - Preencha o nome do produto';
-    }
-    if (!is_numeric($_POST['preco'])) {
-        $array_erros[] = 'ERRO - O preço deve conter apenas números';
-    }
-     if(isset($_FILES['uploadedit']['tmp_name'])){ //tef ajudou
-            $foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
-            $foto_nome = $_FILES['uploadedit']['tmp_name'];
-            $foto_camin= "img/".$foto_edit;
-            move_uploaded_file($foto_nome,$foto_camin);
-
-            } elseif(empty($_FILES['uploadedit']['tmp_name'])){
-                $foto_edit = $produto['foto'];
-            }
-    if (empty($array_erros)) {
-        $array_produto_atualizado = [
-            "id" => $_GET['id'],
-            "nome" => $_POST['nome'],
-            "preco" => $_POST['preco'],
-            "descricao" => $_POST['descricao'],
-            "foto" => $foto_edit
-        ];
-        $atualiza = array_merge($produto,$array_produto_atualizado);
-        $array_produtos = json_decode($dados_produtos, true);
-        foreach($array_produtos as $indice =>$produto){
-            if($produto['id']==$_GET['id']){
-                $array_produtos[$indice]=$atualiza;
-            }
-        }
-        $array_json=json_encode($array_produtos,JSON_PRETTY_PRINT);
-        $novo_json_edit=file_put_contents('dadosProduto.json',$array_json);
-        header("location: indexProduto.php");
-        // echo ("<pre>");
-        // var_dump($array_produtos);
-        // echo ("</pre>");
-        
-    }
-    
-}
-?>
