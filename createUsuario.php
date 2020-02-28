@@ -33,22 +33,22 @@ if (isset($_POST['envio'])) {
     if (empty($array_erro_usuario)) {
 
         $dado_usuario = [
-            'id'=> "",
+            'id' => " ",
             'nome' => $_POST['nome'],
             'email' => $_POST['email'],
             'senha' => password_hash($senha, PASSWORD_DEFAULT)
         ];
 
-        if($meujson_deco == null){
-            $dado_usuario['id']=1;
-        } else{
-            $dado_usuario['id']=count($meujson_deco)+1;
+        if ($meujson_deco == null) {
+            $dado_usuario['id'] = 1;
+        } else {
+            $dado_usuario['id'] = count($meujson_deco) + 1;
         }
         $meujson_deco[] = $dado_usuario; // pegou os dados para colocar na ultima posição
-        echo("<pre>");
-        print_r($meujson_deco);
-        echo("</pre>");
-        exit;
+        // echo("<pre>");
+        // print_r($meujson_deco);
+        // echo("</pre>");
+        // exit;
         $novo_json = json_encode($meujson_deco, JSON_PRETTY_PRINT); // transformei novamente em json
         file_put_contents('dadosUsuario.json', $novo_json); // incluindo novamente no json
 
@@ -77,7 +77,7 @@ if (isset($_POST['envio'])) {
                     <li class="list-group-item ">
 
                         <div class="nome d-flex justify-content-between align-items-center">
-                            <input type="hidden" name="id_user"value="<?php echo $users['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $users['id']; ?>">
                         </div>
                         <div class="nome d-flex justify-content-between align-items-center">
                             <?php echo $users['nome']; ?>
@@ -101,6 +101,9 @@ if (isset($_POST['envio'])) {
                     echo "<li style='color:#ff0000 '> $erro_usuario </li>";
                 }
             } ?>
+            <div class=" form-group">
+                <input type="hidden" class="form-control" id="inputId" aria-describedby="idlHelp" name="id">
+            </div>
             <div class=" form-group">
                 <label for="inputNome">Nome</label>
                 <input type="text" class="form-control" id="inputNome" aria-describedby="namelHelp" name="nome">
