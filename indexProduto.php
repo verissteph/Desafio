@@ -42,7 +42,8 @@ $array_produtos = json_decode($dados_produtos, true);
                                 <a href="editProduto.php?id=<?php echo $produto['id']; ?>" class="btn btn-info">Editar</a>
                                 <!-- <button type="button" class="btn btn-info" name="edit">Editar </button> -->
                                 <!-- </a> -->
-                                <button type="button" class="btn btn-danger" name="delete"> Excluir </button>
+                                <a href="deletarProduto.php?id=<?php echo $produto['id']; ?>" class="btn btn-danger">Excluir</a>
+                                <!-- <button type="button" class="btn btn-danger" name="delete" value=""> Excluir </button> -->
                             </td>
 
                         <?php endforeach ?>
