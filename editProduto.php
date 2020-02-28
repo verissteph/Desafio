@@ -63,12 +63,22 @@ session_start();
 </div>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+
 </html>
 <?php
 $dados_produtos = file_get_contents('dadosProduto.json');
 $array_produtos = json_decode($dados_produtos, true);
 $foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
+
+foreach ($array_produtos as $produto_do_array) {
+    if ($produto_do_array['id'] == $_GET['id']) {
+        $produto = $produto_do_array;
+    }
+}
 if ($_POST) {
     $array_erros = []; //depois testar ele acima desse IF;
     $array_produto_atualizado = [];
@@ -81,22 +91,35 @@ if ($_POST) {
     // if (empty($_FILES['upload_edit']['tmp_name'])) {
     //     $array_erros[] = 'ERRO - Atualize a imagem do produto editado';
     // }
+        if(isset($_FILES['uploadedit']['name'])){
+            $foto_edit = date("ymdHis") . '-' . $_FILES['uploadedit']['name'];
+            $foto_nome = $_FILES['uploadedit']['tmp_name'];
+            $foto_camin= "img/".$foto_edit;
+            move_uploaded_file($foto_nome,$foto_camin);
+
+            } elseif(empty($_FILES['uploadedit']['name'])){
+                $foto_edit = $produto['foto'];
+            }
     if (empty($array_erros)) {
         $array_produto_atualizado = [
             "id" => $_GET['id'],
             "nome" => $_POST['nome'],
             "preco" => $_POST['preco'],
             "descricao" => $_POST['descricao'],
-            "foto" =>$foto_edit
+            "foto" => $foto_edit
         ];
-        //= array_merge($array_produtos, $array_produto_atualizado);
-        $produtos_atualizados=[];
-        $array_produtos = $array_produto_atualizado;
-        $produtos_atualizados = $array_produtos;
+        $atualiza = array_merge($produto,$array_produto_atualizado);
+        $array_produtos = json_decode($dados_produtos, true);
+        foreach($array_produtos as $indice =>$produto){
+            if($produto['id']==$_GET['id']){
+                $array_produtos[$indice]=$atualiza;
+            }
+        }
+        echo ("<pre>");
+        var_dump($array_produtos);
+        echo ("</pre>");
+        exit;
     }
-    echo("<pre>");
-    var_dump($produtos_atualizados);
-    echo ("</pre>");
-    exit;
+    
 }
 ?>
