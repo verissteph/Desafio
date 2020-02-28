@@ -21,18 +21,17 @@ if (isset($_POST['edita'])) {
             $array_erro_usuario[] = "ERRO - Inclua o email do usuário.";
         }
 
-        $senha = $_POST['senha'];
-        if (strlen($senha) < 6) {
-            $array_erro_usuario[] = "ERRO - A senha não atende o critério.";
-        }
-        $conf_senha = $_POST['conf-senha'];
-        if ($senha != $conf_senha) {
-            $array_erro_usuario[] = "ERRO - As senhas não são iguais.";
-        }
+        // $senha = $_POST['senha'];
+        // if (strlen($senha) < 6) {
+        //     $array_erro_usuario[] = "ERRO - A senha não atende o critério.";
+        // }
+        // $conf_senha = $_POST['conf-senha'];
+        // if ($senha != $conf_senha) {
+        //     $array_erro_usuario[] = "ERRO - As senhas não são iguais.";
+        // }
     }
     //JSON
-    //print_r(($array_erro_usuario);
-    if (empty($array_erro_usuario)) { //ESTA DANDO ERRO AQUI
+    if (empty($array_erro_usuario)) { //ESTAVA DANDO ERRO AQUI,POIS SE N BOTASSE SENHA A VALIDACAO PREENCHIA O ARRAY ERRO E N ENTRAVA NESSA CONDIÇÃO
         echo "ola";
         $dados_edit_user = [
             'nome' => $_POST['nome'],
