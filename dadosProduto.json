@@ -1,26 +1,51 @@
 [
     {
-        "email": "valeu32@gmail.com",
-        "senha": "$2y$10$3eMTXi5xRZrYVRx1bSj2bOsKG3IuxaJi2dr6mM58SnoUz4mGm\/6cu"
+        "id": 1,
+        "nome": "Pente Garfo",
+        "preco": "20",
+        "descricao": "Material:Madeira. ",
+        "foto": "200228234129-pente-garfo-madeira.jpg"
     },
     {
-        "nome": "Jo\u00e3o Carlos",
-        "email": "joao.carlos@hotmail.com",
-        "senha": "$2y$10$goMPQuaE12bKDYLrjdkrzuaaM1eMgDzwzamT0qsZRorZdrvZNAaC6"
+        "id": 2,
+        "nome": "Esponja Capilar",
+        "preco": "45",
+        "descricao": "Nudread com finalidade de definir cachos em crespos.",
+        "foto": "200228234632-esponja-nudred.jpg"
     },
     {
-        "nome": "Ana Julia Amaral Bonfim",
-        "email": "ana-julia@gmail.com",
-        "senha": "$2y$10$5K3PvbuwCjYba8AmLM5CLed2qD7Vhp7gmxEVXiUIIvGp6ExzMgQxG"
+        "id": 3,
+        "nome": "Creme Pentear",
+        "preco": "30",
+        "descricao": "Creme de pentear com ativos de reconstru\u00e7\u00e3o capilar. Marca: Salon Line",
+        "foto": "200228235028-creme-salon-vegan-coco.jpg"
     },
     {
-        "nome": "Ingrid ",
-        "email": "ingrid@gmail.com",
-        "senha": "$2y$10$rQ7J0AzbVgJUeZQ\/sL6NEujbYdz2i.fZlNN.e.lq.5dCuF6xcYpSO"
+        "id": 4,
+        "nome": "Creme Creoula",
+        "preco": "52",
+        "descricao": "Creme de pentear hidratante. Marca: Lola",
+        "foto": "200228235944-creme-creoula.png"
     },
     {
-        "nome": "Jonathan Da Nova Gera\u00e7\u00e3o",
-        "email": "dancecomemocao@gmail.com",
-        "senha": "$2y$10$2VvqZ6tWdaTfNmqmLkpUs.\/b8zRMGiyjdPia\/9YQXpbaMDeqhUPvG"
+        "id": 5,
+        "nome": "Pente Garfo",
+        "preco": "15",
+        "descricao": "Material: Ferro",
+        "foto": "200229000049-pente-garfo-ferro.jpg"
+    },
+    {
+        "id": 6,
+        "nome": "Pente Garfo",
+        "preco": "10",
+        "descricao": "Material: Pl\u00e1stico",
+        "foto": "200229000156-pente-garfo-plastico.png"
+    },
+    {
+        "id": 7,
+        "nome": "Gelatina capilar",
+        "preco": "25",
+        "descricao": "Gelatina modeladora baby hair crespo. Marca: Novex",
+        "foto": "200229000257-gelatina-novex.jpg"
     }
 ]
