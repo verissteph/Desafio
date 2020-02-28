@@ -32,7 +32,7 @@ if (isset($_POST['edita'])) {
     }
     //JSON
     if (empty($array_erro_usuario)) { //ESTAVA DANDO ERRO AQUI,POIS SE N BOTASSE SENHA A VALIDACAO PREENCHIA O ARRAY ERRO E N ENTRAVA NESSA CONDIÇÃO
-        echo "ola";
+        //echo "ola";
         $dados_edit_user = [
             'nome' => $_POST['nome'],
             'email' => $_POST['email']
