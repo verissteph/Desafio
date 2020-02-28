@@ -34,6 +34,7 @@ if (isset($_POST['edita'])) {
     if (empty($array_erro_usuario)) { //ESTAVA DANDO ERRO AQUI,POIS SE N BOTASSE SENHA A VALIDACAO PREENCHIA O ARRAY ERRO E N ENTRAVA NESSA CONDIÇÃO
         //echo "ola";
         $dados_edit_user = [
+            'id'=>"",
             'nome' => $_POST['nome'],
             'email' => $_POST['email']
         ];
@@ -47,6 +48,7 @@ if (isset($_POST['edita'])) {
         $dados_user_editados = json_encode($meujson_deco, JSON_PRETTY_PRINT);
         file_put_contents('dadosUsuario.json', $dados_user_editados);
     }
+    header("location: createUsuario.php");
 }
 ?>
 <!DOCTYPE html>
