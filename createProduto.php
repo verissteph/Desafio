@@ -34,16 +34,16 @@ if (!empty($_POST) && empty($array_erro)) {
     // lógica de que não pode enviar info se todos os campos obrigatorios estiverem vazios
     // recebendo os POSTS
     $cadastro_produto = [
-        "id"=>"",
-        "nome"=>$_POST['nome'],
-        "preco"=>$_POST['preco'],
-        "descricao"=>$_POST['descricao'],
-        "foto"=> date("ymdHis") . '-' . $FILES['upload']['name'] 
+        "id" => "",
+        "nome" => $_POST['nome'],
+        "preco" => $_POST['preco'],
+        "descricao" => $_POST['descricao'],
+        "foto" => date("ymdHis") . '-' . $_FILES['upload']['name']
     ]; //colocando o ID antes dos outros elementos do array
     $dados_produtos = file_get_contents('dadosProduto.json');
     $array_produtos = json_decode($dados_produtos, true); //ele vai transformar em array assoc
     //------------------------------------------CRIANDO ID---------------------------------------------
-    
+
     //Condição caso o arqv json esteja vazio, ele vai atribuir ao indice ID e criar ID para cada produto
     if ($array_produtos == null) {
         $cadastro_produto['id'] = 1; //a posição ID irá receber o valor 1
@@ -59,16 +59,16 @@ if (!empty($_POST) && empty($array_erro)) {
     //mostra qual extensao do arquivo 
     $extensao_img = $info_img['extension'];
     //renomeando o arquivo 
-   // $rename_img = $name_img = $info_img['filename'] . "-" . $cadastro_produto['id'] . '.' . $extensao_img;
-   $rename_img=date("ymdHis").'-'.$FILES['upload']['name'];
-//------------------------------------------------------------------------------------------------------
+    // $rename_img = $name_img = $info_img['filename'] . "-" . $cadastro_produto['id'] . '.' . $extensao_img;
+    $rename_img = date("ymdHis") . '-' . $_FILES['upload']['name'];
+    //------------------------------------------------------------------------------------------------------
 
     //inserir conteudo do cadastro do produto do formulario no array 
     $array_produtos[] = $cadastro_produto;
     //transformar novamente em JSON 
     $json_produtos = json_encode($array_produtos, JSON_PRETTY_PRINT);
     //guarda o conteudo ''string'' no arquivo JSON
-     file_put_contents('dadosProduto.json', $json_produtos);
+    file_put_contents('dadosProduto.json', $json_produtos);
     //Para armazenar a imagem na pasta de imagem:
     if (is_dir('img/')) {
         move_uploaded_file($_FILES['upload']['tmp_name'], 'img/' . $rename_img);
@@ -129,6 +129,9 @@ if (!empty($_POST) && empty($array_erro)) {
             </div>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
