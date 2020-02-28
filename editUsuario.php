@@ -21,20 +21,12 @@ if (isset($_POST['edita'])) {
             $array_erro_usuario[] = "ERRO - Inclua o email do usuário.";
         }
 
-        // $senha = $_POST['senha'];
-        // if (strlen($senha) < 6) {
-        //     $array_erro_usuario[] = "ERRO - A senha não atende o critério.";
-        // }
-        // $conf_senha = $_POST['conf-senha'];
-        // if ($senha != $conf_senha) {
-        //     $array_erro_usuario[] = "ERRO - As senhas não são iguais.";
-        // }
     }
     //JSON
     if (empty($array_erro_usuario)) { //ESTAVA DANDO ERRO AQUI,POIS SE N BOTASSE SENHA A VALIDACAO PREENCHIA O ARRAY ERRO E N ENTRAVA NESSA CONDIÇÃO
         //echo "ola";
         $dados_edit_user = [
-            'id'=>"",
+            'id'=> $_POST['id'],
             'nome' => $_POST['nome'],
             'email' => $_POST['email']
         ];
@@ -45,8 +37,9 @@ if (isset($_POST['edita'])) {
             $dados_edit_user['senha'] = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         }
         $meujson_deco[$posicao_user] = $dados_edit_user;
-        $dados_user_editados = json_encode($meujson_deco, JSON_PRETTY_PRINT);
-        file_put_contents('dadosUsuario.json', $dados_user_editados);
+        
+        //$dados_user_editados = ;
+        file_put_contents('dadosUsuario.json', json_encode($meujson_deco, JSON_PRETTY_PRINT));
     }
     header("location: createUsuario.php");
 }
@@ -68,6 +61,9 @@ if (isset($_POST['edita'])) {
             <h2>Editar Usuario</h2>
         </span>
         <form class="w-100 p-3 m-0" method="POST">
+            <div class=" form-group">
+                <input type="hidden" class="form-control" id="inputId" aria-describedby="namelHelp"  value="<?php echo $meujson_deco[$posicao_user]['id']; //CRIANDO O ID DO USUARIO?>" name="id">
+            </div>
             <div class=" form-group">
                 <label for="inputNome">Nome</label>
                 <input type="text" class="form-control" id="inputNome" aria-describedby="namelHelp" placeholder="Adm" value="<?php echo $meujson_deco[$posicao_user]['nome']; ?>" name="nome">
