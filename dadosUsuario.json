@@ -1,27 +1,38 @@
 [
     {
-        "nome": "Ana Clara Prachedes",
-        "email": "valeu32@gmail.com",
-        "senha": "$2y$10$3eMTXi5xRZrYVRx1bSj2bOsKG3IuxaJi2dr6mM58SnoUz4mGm\/6cu"
+        "id": 1,
+        "nome": "Nina Simone",
+        "email": "nina_simone@gmail.com",
+        "senha": "$2y$10$SNjIpB8JmzvYwG0.0gbyVeosVuubkcpMT1zcvSKYe9Zd5mS0.Fq2u"
     },
     {
-        "nome": "Jo\u00e3o Carlos Ribeiro",
-        "email": "joao.carlos@hotmail.com",
-        "senha": "$2y$10$goMPQuaE12bKDYLrjdkrzuaaM1eMgDzwzamT0qsZRorZdrvZNAaC6"
+        "id": 2,
+        "nome": "Lauryn Hill",
+        "email": "maravilhosa_rb@gmail.com",
+        "senha": "$2y$10$D8\/J8zBoeq2Uurys\/5lx7.oho59ns8\/UxYR3DIkuz2aKnxpL1jFl2"
     },
     {
-        "nome": "Ana Julia Amaral Bonfim",
-        "email": "ana-julia@gmail.com",
-        "senha": "$2y$10$5K3PvbuwCjYba8AmLM5CLed2qD7Vhp7gmxEVXiUIIvGp6ExzMgQxG"
+        "id": 3,
+        "nome": "Aretha Franklin",
+        "email": "aretha_eterna@gmail.com",
+        "senha": "$2y$10$qGX6BFDZkenmmOKoM4TEKehn3D9.y5lMDcF2aHy74q0jpEq4QuuhK"
     },
     {
-        "nome": "Ingrid ",
-        "email": "ingrid@gmail.com",
-        "senha": "$2y$10$rQ7J0AzbVgJUeZQ\/sL6NEujbYdz2i.fZlNN.e.lq.5dCuF6xcYpSO"
+        "id": 4,
+        "nome": "Akua Naru",
+        "email": "akua_hiphop@hotmail.com",
+        "senha": "$2y$10$3vkYMl9N1u55wvmXFknlnuZlyNnEbJ1u64Fai1LNCO9f9lpzQsvFi"
     },
     {
-        "nome": "Jonathan Da Nova Gera\u00e7\u00e3o",
-        "email": "dancecomemocao@gmail.com",
-        "senha": "$2y$10$2VvqZ6tWdaTfNmqmLkpUs.\/b8zRMGiyjdPia\/9YQXpbaMDeqhUPvG"
+        "id": 6,
+        "nome": "Jojo Abot",
+        "email": "jojo_new@gmail.com",
+        "senha": "$2y$10$7LKk9ZvTc2JRaVABFXz5Qug1o63dzCkWMFTvwrjbxOe3qOCkzspHO"
+    },
+    {
+        "id": 6,
+        "nome": "T\u00e1ssia  Reis",
+        "email": "tassia_r@hotmail.com",
+        "senha": "$2y$10$JtA3c29tbtZFR.lBa\/jFIuHxLFdjsCz0pjCB\/290xGhSwzFwhno\/W"
     }
 ]
