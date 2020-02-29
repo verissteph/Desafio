@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 $meujson_deco = [];
 if (isset($_GET['email'])) {
     $armazena_json = file_get_contents('dadosUsuario.json'); // peguei os dados do Json

@@ -1,9 +1,9 @@
 [
     {
-        "id": 1,
-        "nome": "Nina Simone",
+        "id": "1",
+        "nome": "Nina Simone Sing",
         "email": "nina_simone@gmail.com",
-        "senha": "$2y$10$SNjIpB8JmzvYwG0.0gbyVeosVuubkcpMT1zcvSKYe9Zd5mS0.Fq2u"
+        "senha": "$2y$10$i8uDQQMOeACbtigfufHtru5IXSCx3oGNBpZg4IeueImu9zG5N55IW"
     },
     {
         "id": 2,

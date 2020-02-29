@@ -1,21 +1,23 @@
-<?php
-session_start();
+<?php //session_start();
 $armazena_json = file_get_contents('dadosUsuario.json'); //pegando dados do json
-$meujson_deco = json_decode($armazena_json, TRUE);//transformando em array para manipula-lo
- //var_dump($meujson_deco);
-
-if($_POST){//se apertarmos no botão ENTRAR
-    var_dump($_POST);
-foreach($meujson_deco as $usuarios){ //vai retornar para cada array dentro do array q era json como usuarios, um por um.
-        if ((password_verify($_POST['senha'],$usuarios['senha'])) && ($usuarios['email'] == $_POST['email_login'])){ //se a senha verificada for igual a que colocamos no campo senha E SE o usuario email for o mesmo do que está no campo, ele irá:
+$meujson_deco = json_decode($armazena_json, TRUE); //transformando em array para manipula-lo
+//------------VALIDAR CAMPO--------------
+if ($_POST) {
+    $senha_usuario = $_POST['senha'];
+    $email_usuario = $_POST['email_login'];
+    foreach ($meujson_deco as $usuarios) { //vai retornar para cada array dentro do array q era json como usuarios, um por um.
+        if ((password_verify($senha_usuario, $usuarios['senha']) == $senha_usuario) && ($usuarios['email'] == $email_usuario)) { //se a senha verificada for igual a que colocamos no campo senha E SE o usuario email for o mesmo do que está no campo, ele irá:
+            $_SESSION['senha'] = $senha_usuario;
+            $_SESSION['email'] = $email_usuario;
             header("location: indexProduto.php"); //redireciona para a pag principal
-        } else{
-            header("location: login.php"); //dá um refresh na pagina e nao sai dela.
+            exit;
+        } else {
+            unset($_SESSION['senha']);
+            unset($_SESSION['email']);
+            header("location: login.php");
         }
-        }
-   }
-
-?>
+    }
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +29,7 @@ foreach($meujson_deco as $usuarios){ //vai retornar para cada array dentro do ar
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php require('header.php');?>
     <div class="container w-50 mt-4 p-3">
         <form method="POST">
             <h2>Login</h2>

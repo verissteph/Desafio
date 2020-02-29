@@ -1,5 +1,5 @@
-<?php
-session_start();
+<?php session_start();
+include('header.php');
 //codigo independente do IF!
 $armazena_json = file_get_contents('dadosUsuario.json'); // peguei os dados do Json
 $meujson_deco = json_decode($armazena_json, TRUE); // retornando um array e não um objeto
@@ -66,7 +66,7 @@ if (isset($_POST['envio'])) {
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    
     <div class="container style=" style="display:flex;">
         <!-- CRIAR GROUP LIST -->
         <div class="listas w-50 p-3 m-0">

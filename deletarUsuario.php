@@ -1,5 +1,4 @@
-<?php
-
+<?php session_start();
 $armazena_json = file_get_contents('dadosUsuario.json'); // peguei os dados do Json
 $meujson_deco = json_decode($armazena_json, TRUE); // retornando um array e não um objeto
 //$posicao_userId = array_search($_GET['id'], array_column($meujson_deco, 'id'));

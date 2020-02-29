@@ -1,5 +1,4 @@
-<?php
-
+<?php session_start();
 $dados_produtos = file_get_contents('dadosProduto.json');
 $array_produtos = json_decode($dados_produtos, true);
 

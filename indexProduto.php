@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<?php
+<?php session_start();
 include('header.php');
-session_start();
-$dados_produtos = file_get_contents('dadosProduto.json');
-$array_produtos = json_decode($dados_produtos, true);
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,6 +28,8 @@ $array_produtos = json_decode($dados_produtos, true);
             <tbody>
 
                 <?php
+                $dados_produtos = file_get_contents('dadosProduto.json');
+                $array_produtos = json_decode($dados_produtos, true);
                 if ($array_produtos) : ?>
                     <?php foreach ($array_produtos as $produto) : ?>
                         <tr>
